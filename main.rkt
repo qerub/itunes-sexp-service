@@ -22,6 +22,7 @@
                 [d [@ #:type _float t duration]])
            `(track (artist ,[@ t artist])
                    (album  ,[@ t album])
+                   (number ,[@ #:type _uint8 t trackNumber])
                    (name   ,[@ t name])
                    (length ,(seconds->m:s d))))
          '(error "iTunes is not playing"))]
