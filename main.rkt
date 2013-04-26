@@ -1,7 +1,5 @@
 #lang racket
 
-(provide main)
-
 (require "qutils.rkt")
 (require "objc-plumbing.rkt")
 (require "scripting-bridge.rkt")
@@ -51,7 +49,7 @@
   (let-values ([(m s) (-> x round inexact->exact (quotient/remainder 60))])
     (~a m ":" (~a #:width 2 #:pad-string "0" #:align 'right s))))
 
-(define main
-  (match-lambda*
-    ['() (->> (read) handle pretty-write)]
-    [_   (error "Run this program without arguments!")]))
+(module+ main
+  (match (current-command-line-arguments)
+    [(vector) (->> (read) handle pretty-write)]
+    [_        (error "Run this program without arguments!")]))
