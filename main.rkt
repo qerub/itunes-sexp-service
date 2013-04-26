@@ -52,5 +52,5 @@
 
 (define main
   (match-lambda*
-    ['() (->> (read) handle write) (newline)]
+    ['() (->> (read) handle pretty-write)]
     [_   (error "Run this program without arguments!")]))
