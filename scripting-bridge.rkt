@@ -2,6 +2,8 @@
 
 (provide get-scripting-bridge-app)
 
+; http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ScriptingBridgeConcepts/Introduction/Introduction.html
+
 (require ffi/unsafe
          ffi/unsafe/objc
          ffi/unsafe/nsstring)
