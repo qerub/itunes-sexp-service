@@ -12,9 +12,11 @@
 (define (handle command)
   (match command
     ['(help)
+     ; =>
      '(help "Available commands:" (help) (current-track) (pause) (volume) (volume 0-100))]
     
     ['(current-track)
+     ; =>
      (if (is-playing?)
          (let* ([t [@ iTunes currentTrack]]
                 [d [@ #:type _float t duration]])
@@ -26,22 +28,27 @@
          '(error "iTunes is not playing"))]
     
     ['(pause)
+     ; =>
      [@ iTunes pause]
      'ok]
     
     ['(volume)
+     ; =>
      (current-volume)]
     
     [`(volume ,(? acceptable-volume? end))
+     ; =>
      (for ([v (volume-steps (current-volume) end)])
        [@ iTunes setSoundVolume: #:type _uint8 v]
        (sleep 0.050))
      'ok]
     
     [(list _ ...)
+     ; =>
      '(error "No such command (try the help command)")]
     
     [_
+     ; =>
      '(error "Command must be a list")]))
 
 ; NOTE: This is the best way I've found without having to make an enum for "player state".
