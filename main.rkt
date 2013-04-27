@@ -32,7 +32,7 @@
     ['(volume)
      [@ #:type _uint8 iTunes soundVolume]]
     
-    [`(volume ,(? integer? n))
+    [`(volume ,(? acceptable-volume? n))
      [@ iTunes setSoundVolume: #:type _uint8 n]
      'ok]
     
@@ -48,6 +48,8 @@
 (define (seconds->m:s x)
   (let-values ([(m s) (-> x round inexact->exact (quotient/remainder 60))])
     (~a m ":" (~a #:width 2 #:pad-string "0" #:align 'right s))))
+
+(define (acceptable-volume? v) (<= 0 v 100))
 
 (module+ main
   (match (current-command-line-arguments)
