@@ -30,10 +30,12 @@
      'ok]
     
     ['(volume)
-     [@ #:type _uint8 iTunes soundVolume]]
+     (current-volume)]
     
-    [`(volume ,(? acceptable-volume? n))
-     [@ iTunes setSoundVolume: #:type _uint8 n]
+    [`(volume ,(? acceptable-volume? end))
+     (for ([v (volume-steps (current-volume) end)])
+       [@ iTunes setSoundVolume: #:type _uint8 v]
+       (sleep 0.050))
      'ok]
     
     [(list _ ...)
@@ -49,7 +51,12 @@
   (let-values ([(m s) (-> x round inexact->exact (quotient/remainder 60))])
     (~a m ":" (~a #:width 2 #:pad-string "0" #:align 'right s))))
 
+(define (current-volume) [@ #:type _uint8 iTunes soundVolume])
+
 (define (acceptable-volume? v) (<= 0 v 100))
+
+(define (volume-steps start end)
+  (reverse (range end start (if (< end start) +5 -5))))
 
 (module+ main
   (match (current-command-line-arguments)
