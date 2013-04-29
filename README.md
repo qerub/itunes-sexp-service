@@ -14,6 +14,17 @@ Listening on port 4137!
 ```
 
 ```
+$ echo "(help)" | nc localhost 4137
+(help
+ "Available commands:"
+ (help)
+ (current-track)
+ (pause)
+ (volume)
+ (volume 0-100))
+```
+
+```
 $ echo "(current-track)" | nc localhost 4137
 (track (artist "Clint Heidorn") (album "Atwater") (name "3") (length "3:55"))
 ```
