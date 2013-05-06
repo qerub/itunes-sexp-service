@@ -10,7 +10,7 @@
 (define iTunes (get-scripting-bridge-app "com.apple.iTunes"))
 
 (define (help)
-  '(help "Available commands:" (help) (current-track) (pause!) (volume) (set-volume! 0-100)))
+  '(help "Available commands:" (help) (current-track) (pause) (volume) (set-volume 0-100)))
 
 (define (current-track)
   (if (is-playing?)
@@ -23,16 +23,16 @@
                 (length ,(seconds->m:s d))))
       (error "iTunes is not playing")))
 
-(define (pause!)
+(define (pause)
   (define starting-volume (volume))
-  (set-volume! 0)
+  (set-volume 0)
   [@ iTunes pause]
   [@ iTunes setSoundVolume: #:type _uint8 starting-volume]
   'ok)
 
 (define (volume) [@ #:type _uint8 iTunes soundVolume])
 
-(define (set-volume! v)
+(define (set-volume v)
   (unless (<= 0 v 100) (error "Invalid volume"))
   
   (for ([v-step (volume-steps (volume) v)])
@@ -58,7 +58,7 @@
   (curry abstract-command-handler
          (for/hasheq ([x commands]) (values (object-name x) x))))
 
-(define command-handler (make-command-handler help current-track pause! volume set-volume!))
+(define command-handler (make-command-handler help current-track pause volume set-volume))
 
 ;; Helpers
 
