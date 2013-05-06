@@ -1,6 +1,6 @@
 #lang racket
 
-(provide define-syntax-case -> ->>)
+(provide define-syntax-case -> ->> if-let !)
 
 (define-syntax-rule (define-syntax-case name literals cases ...)
   (define-syntax (name stx)
@@ -16,3 +16,11 @@
   ((_ x (form more ...)) #'(form more ... x))
   ((_ x form)            #'(form x))
   ((_ x form more ...)   #'(->> (->> x form) more ...)))
+
+(define-syntax-case if-let ()
+  [(_ [binding value] then-expr else-expr)
+   #'(let ([binding value])
+       (if binding then-expr else-expr))])
+
+(define-syntax-case ! ()
+  [(_ f args ...) #'(not (f args ...))])
