@@ -23,7 +23,12 @@
                 (length ,(seconds->m:s d))))
       (error "iTunes is not playing")))
 
-(define (pause!) [@ iTunes pause] 'ok)
+(define (pause!)
+  (define starting-volume (volume))
+  (set-volume! 0)
+  [@ iTunes pause]
+  [@ iTunes setSoundVolume: #:type _uint8 starting-volume]
+  'ok)
 
 (define (volume) [@ #:type _uint8 iTunes soundVolume])
 
