@@ -32,7 +32,7 @@
   
   (for ([v-step (volume-steps (volume) v)])
     [@ iTunes setSoundVolume: #:type _uint8 v-step]
-    (sleep 0.050))
+    (sleep 0.1))
   'ok)
 
 ;; Command handling
