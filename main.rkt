@@ -1,8 +1,10 @@
 #lang racket
 
-(require "qutils.rkt")
 (require "objc-plumbing.rkt")
 (require "scripting-bridge.rkt")
+
+(require rackjure/conditionals)
+(require rackjure/threading)
 
 (require (only-in ffi/unsafe _float _uint8))
 (require (only-in ffi/unsafe/objc _BOOL))
@@ -66,7 +68,7 @@
 (define (is-playing?) [@ [@ iTunes currentTrack] name])
 
 (define (seconds->m:s x)
-  (let-values ([(m s) (-> x round inexact->exact (quotient/remainder 60))])
+  (let-values ([(m s) (~> x round inexact->exact (quotient/remainder 60))])
     (~a m ":" (~a #:width 2 #:pad-string "0" #:align 'right s))))
 
 (define (volume-steps start end)
@@ -76,5 +78,5 @@
 
 (module+ main
   (match (current-command-line-arguments)
-    [(vector) (->> (read) command-handler pretty-write)]
+    [(vector) (~>> (read) command-handler pretty-write)]
     [_        (error "Run this program without arguments!")]))

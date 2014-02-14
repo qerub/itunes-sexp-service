@@ -6,7 +6,7 @@
          ffi/unsafe/objc
          ffi/unsafe/nsstring)
 
-(require "qutils.rkt")
+(require "define-syntax-case.rkt")
 
 (import-class NSString)
 
