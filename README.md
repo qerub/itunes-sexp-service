@@ -1,4 +1,6 @@
-# iTunes S-expression Service: Simple [Remote] Control
+<p align="center">
+  <img src="https://raw.github.com/qerub/itunes-sexp-service/master/misc/logo.png" alt="iTunes S-expression Service: Simple [Remote] Control"/>
+</p>
 
 I like music, my office colleague, Scheme, and OS X (in that particular order).
 My colleague oftens asks me what music I'm playing at the office and would
