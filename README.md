@@ -40,10 +40,10 @@ $ echo "(current-track)" | nc localhost 4137
 ### Shared (Permanently)
 
 ```
-$ mkdir -p compiled ~/Library/LaunchDaemons
+$ mkdir -p compiled ~/Library/LaunchAgents
 $ raco exe -o compiled/itunes-sexp-service main.rkt
 $ sudo cp compiled/itunes-sexp-service /usr/local/bin
-$ cp misc/se.defsoftware.itunes-sexp-service.plist ~/Library/LaunchDaemons
-$ launchctl load ~/Library/LaunchDaemons/se.defsoftware.itunes-sexp-service.plist
+$ cp misc/se.defsoftware.itunes-sexp-service.plist ~/Library/LaunchAgents
+$ launchctl load ~/Library/LaunchAgents/se.defsoftware.itunes-sexp-service.plist
 $ echo "(volume 75)" | nc localhost 4137
 ```
