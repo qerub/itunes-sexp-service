@@ -10,6 +10,11 @@ What a great occasion to combine all the things I like!
 This repository contains a service implemented in Racket that reads S-expression
 commands/queries and forwards them to iTunes through Scripting Bridge.
 
+## Prerequisites
+
+You need to have [Racket](http://racket-lang.org/) ([download here](http://racket-lang.org/download/))
+and [Rackjure](https://github.com/greghendershott/rackjure) (`raco pkg install rackjure`) installed.
+
 ## Usage Instructions
 
 ### Privately
