@@ -2,7 +2,7 @@
 
 (provide @)
 
-(require (except-in ffi/unsafe ->)
+(require ffi/unsafe
          ffi/unsafe/objc
          ffi/unsafe/nsstring)
 

@@ -4,8 +4,7 @@
 
 ; http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ScriptingBridgeConcepts/Introduction/Introduction.html
 
-(require ffi/unsafe
-         ffi/unsafe/objc
+(require ffi/unsafe/objc
          ffi/unsafe/nsstring)
 
 (require "objc-plumbing.rkt")

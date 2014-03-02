@@ -1,13 +1,12 @@
 #lang racket
 
-(require "objc-plumbing.rkt")
-(require "scripting-bridge.rkt")
+(require rackjure/conditionals
+         rackjure/threading)
 
-(require rackjure/conditionals)
-(require rackjure/threading)
+(require ffi/unsafe)
 
-(require (only-in ffi/unsafe _float _uint8))
-(require (only-in ffi/unsafe/objc _BOOL))
+(require "objc-plumbing.rkt"
+         "scripting-bridge.rkt")
 
 (define iTunes (get-scripting-bridge-app "com.apple.iTunes"))
 
