@@ -21,13 +21,12 @@ and [Rackjure](https://github.com/greghendershott/rackjure) (`raco pkg install r
 
 ```
 $ echo "(help)" | racket main.rkt
-(help
- "Available commands:"
- (help)
- (current-track)
- (pause)
- (volume)
- (volume 0-100))
+(help "Available commands:"
+      (help)
+      (current-track)
+      (pause)
+      (volume)
+      (set-volume 0-100))
 ```
 
 ### Shared (Temporarily)
@@ -39,7 +38,10 @@ tcpserver: status: 0/40
 
 ```
 $ echo "(current-track)" | nc localhost 4137
-(track (artist "Clint Heidorn") (album "Atwater") (name "3") (length "3:55"))
+(track (artist "Clint Heidorn")
+       (album "Atwater")
+       (name "3")
+       (length "3:55"))
 ```
 
 ### Shared (Permanently)

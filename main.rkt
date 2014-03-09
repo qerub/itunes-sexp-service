@@ -6,7 +6,8 @@
 (require ffi/unsafe)
 
 (require "objc-plumbing.rkt"
-         "scripting-bridge.rkt")
+         "scripting-bridge.rkt"
+         "sexp-formatter.rkt")
 
 (define iTunes (get-scripting-bridge-app "com.apple.iTunes"))
 
@@ -77,5 +78,5 @@
 
 (module+ main
   (match (current-command-line-arguments)
-    [(vector) (~>> (read) command-handler pretty-write)]
+    [(vector) (~>> (read) command-handler write-formatted-sexp) (newline)]
     [_        (error "Run this program without arguments!")]))
